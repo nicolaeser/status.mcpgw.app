@@ -570,13 +570,6 @@ export const PROVIDERS: Record<string, ProviderEntry> = {
       "rss": { url: "https://www.paypal-status.com/feed/rss" },
     },
   },
-  "peoplefone": {
-    brand: "peoplefone",
-    defaultEndpoint: "global",
-    endpoints: {
-      "global": { url: undefined },
-    },
-  },
   "perplexity": {
     brand: "perplexity",
     defaultEndpoint: "status_page",
