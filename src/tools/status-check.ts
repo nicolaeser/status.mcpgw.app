@@ -45,7 +45,13 @@ function unknownEndpointError(
   );
 }
 
-const tool: Tool = {
+const inputSchema = {
+  provider: providerEnum,
+  endpoint: endpointEnum,
+  format: statusOutputFormatSchema,
+};
+
+const tool: Tool<typeof inputSchema> = {
   name: "status_check",
   description:
     "Fetches a status page or status API for any supported provider. Pass `provider` (e.g. \"newrelic\", \"openai\", \"aws\") and optionally `endpoint` (e.g. \"summary\", \"incidents_unresolved\", \"status_page\"). Omitting `endpoint` returns the provider's primary feed. Use `format` to control output shape.",
@@ -58,11 +64,7 @@ const tool: Tool = {
     idempotentHint: true,
     openWorldHint: true,
   },
-  inputSchema: {
-    provider: providerEnum,
-    endpoint: endpointEnum,
-    format: statusOutputFormatSchema,
-  },
+  inputSchema,
 
   async execute({ provider, endpoint, format }) {
     const entry = PROVIDERS[provider];
